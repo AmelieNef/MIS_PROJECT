@@ -9,12 +9,12 @@ package window;
  *
  * @author Célisons
  */
-public class StockWindow extends javax.swing.JFrame {
+public class NewOrder extends javax.swing.JFrame {
 
     /**
-     * Creates new form StockWindow
+     * Creates new form NewOrder
      */
-    public StockWindow() {
+    public NewOrder() {
         initComponents();
     }
 
@@ -43,6 +43,10 @@ public class StockWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * @param args the command line arguments
+     */
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
