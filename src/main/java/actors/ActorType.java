@@ -5,14 +5,14 @@ import java.time.LocalDateTime;
 public enum ActorType {
     Caregiver(1), Doctor(2), Midwife(3), Nurse(4), AssistantPharmacist(5), HeadPharmacist(6), AssistantLogistician(7), Logistician(8);
 
-    private int id;
+    private int idProfession;
 
     ActorType(int id) {
-        id = id;
+        idProfession = id;
     }
 
     public int getId() {
-        return id;
+        return idProfession;
     }
 
     public static ActorType from( int id ) {

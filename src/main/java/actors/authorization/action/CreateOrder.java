@@ -1,6 +1,6 @@
 package actors.authorization.action;
 
-public class CreateOrder implements Action{
+public class CreateOrder implements IAction {
     //Champs nécessaire pour la commande
 
     @Override

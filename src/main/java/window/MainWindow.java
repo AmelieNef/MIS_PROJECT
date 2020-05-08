@@ -7,19 +7,15 @@ package window;
 
 import actors.Actor;
 import actors.ActorType;
+import actors.IAuthorizationManager;
 import actors.AuthorizationManager;
-import actors.AuthorizationManagerImpl;
-import actors.authorization.action.Action;
+import actors.authorization.action.IAction;
 import actors.authorization.action.ActionType;
-import actors.authorization.action.ReadAction;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
 import java.text.ParseException;
 
 /**
@@ -34,12 +30,13 @@ public class MainWindow extends JFrame {
     private JButton ConnectButton = new JButton("Connection");
     //private JButton StockButton = new JButton("Go to stock");
     private JLabel labelId = new JLabel("Entrer votre ID :");
-    private AuthorizationManager authorizationManager;
+    private IAuthorizationManager authorizationManager;
     private JFormattedTextField jFormattedTextField;
-    Action showStock = new Action() {
+    private int service, personnel;
+    IAction showStock = new IAction() {
         @Override
         public void performAction() {
-            new StockWindow(); // etc.
+            new StockWindow(authorizationManager, service); // etc.
         }
 
         @Override
@@ -47,7 +44,7 @@ public class MainWindow extends JFrame {
             return ActionType.ShowStock;
         }
     };
-    private Actor user;
+    private Actor user = null;
 
     /**
      * Creates new form MainWindow
@@ -108,11 +105,12 @@ public class MainWindow extends JFrame {
             try{
             int medOrNotMed = Integer.parseInt(idPersonSplit[0]);
             int buyerOrUser = Integer.parseInt(idPersonSplit[1]);
-            int service = Integer.parseInt(idPersonSplit[2]);
+            System.out.println(buyerOrUser);
+            service = Integer.parseInt(idPersonSplit[2]);
             int profession = Integer.parseInt(idPersonSplit[3]);
-            int personnel = Integer.parseInt(idPersonSplit[4]);
-            user = new Actor( ActorType.from(profession), service );
-            authorizationManager = new AuthorizationManagerImpl(user);
+            personnel = Integer.parseInt(idPersonSplit[4]);
+            user = new Actor( ActorType.from(profession), service , personnel);
+            authorizationManager = new AuthorizationManager(user);
             if (authorizationManager.isAuthorized(showStock)){
                 showStock.performAction();
             }
@@ -133,13 +131,6 @@ public class MainWindow extends JFrame {
         }
     }
 
-
-    //Méthode permettant le déclenchement de l'action d'ouverture de la fenêtre Stock.
-    class LaunchStockWindow implements ActionListener{
-        public void actionPerformed(ActionEvent aActionEvent){
-
-        }
-    }
     public static void main(String[] args) throws ParseException {
         //Lancement de ma fenêtre d'accueil
         MainWindow mainWindow = new MainWindow();

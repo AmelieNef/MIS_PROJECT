@@ -3,7 +3,7 @@ package actors.authorization.action;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadAction<T> implements Action{
+public class ReadAction<T> implements IAction {
     //chercher des trucs dans la DB
 
     private final boolean global;
@@ -14,7 +14,6 @@ public class ReadAction<T> implements Action{
         this.global = global;
         this.serviceId = serviceId;
     }
-
     @Override
     public void performAction() {
         // ConnectToDb
