@@ -20,10 +20,10 @@ import java.text.ParseException;
 
 /**
  *
- * @author Célisons
+ * @author CÃ©lisons
  */
-public class MainWindow<Actor> extends JFrame {
-    //Paramètres liés aux objets interactifs se trouvant sur la fenêtre d'accueil
+public class MainWindow extends JFrame {
+    //ParamÃ¨tres liÃ©s aux objets interactifs se trouvant sur la fenÃªtre d'accueil
     //Initiation du fond sur lequel on va venir coller les interractions avec l'utilisateur
     private JPanel panel = new JPanel();
     //Initiation des interracteurs avec l'utilisateur
@@ -33,7 +33,6 @@ public class MainWindow<Actor> extends JFrame {
     private IAuthorizationManager authorizationManager;
     private JFormattedTextField jFormattedTextField;
     private int service, personnel;
-    private actors.Actor user;
     IAction showStock = new IAction() {
         @Override
         public void performAction() {
@@ -45,21 +44,22 @@ public class MainWindow<Actor> extends JFrame {
             return ActionType.ShowStock;
         }
     };
+    private actors.Actor user;
 
     /**
      * Creates new form MainWindow
      */
     public MainWindow() throws ParseException {
 
-        //Paramètres liés à la forme générale de la fenêtre d'accueil
+        //ParamÃ¨tres liÃ©s Ã  la forme gÃ©nÃ©rale de la fenÃªtre d'accueil
         this.setTitle("Hospital inventory management software");
         this.setSize(410,280);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //Paramètres liés aux objets interactifs se trouvant sur la fenêtre d'accueil
+        //ParamÃ¨tres liÃ©s aux objets interactifs se trouvant sur la fenÃªtre d'accueil
 
 
-        //Ajouts de la fonctionnalité lié à l'action des boutons
+        //Ajouts de la fonctionnalitÃ© liÃ© Ã  l'action des boutons
         ConnectButton.addActionListener(new EnabledButton());
         //StockButton.addActionListener(new LaunchStockWindow());
 
@@ -67,12 +67,12 @@ public class MainWindow<Actor> extends JFrame {
         ConnectButton.setPreferredSize(new Dimension(200,30));
         //StockButton.setPreferredSize(new Dimension(200,30));
 
-        //Création de l'image
+        //CrÃ©ation de l'image
         ImageIcon imageIcon = new ImageIcon(new ImageIcon(MainWindow.class.getClassLoader().getResource("logo.png")).
                 getImage().getScaledInstance(300, 160, Image.SCALE_DEFAULT));
         JLabel logo = new JLabel(imageIcon);
 
-        // Création de l'encadré ID
+        // CrÃ©ation de l'encadrÃ© ID
         //Medical(0)/Unmedical(1)-Buyer(0)/user(1)-SERVICE(1-29)-Profession(1-8)-Personnel(1-1051)
         MaskFormatter id = new MaskFormatter("#-#-##-#-####");
         jFormattedTextField = new JFormattedTextField(id);
@@ -80,7 +80,7 @@ public class MainWindow<Actor> extends JFrame {
         jFormattedTextField.setPreferredSize(new Dimension(110,30));
         jFormattedTextField.setForeground(Color.BLACK);
 
-        //Ajouts des fonctionnalités aux panneaux
+        //Ajouts des fonctionnalitÃ©s aux panneaux
         panel.add(logo,BorderLayout.NORTH);
         panel.add(labelId, BorderLayout.CENTER);
         panel.add(jFormattedTextField, BorderLayout.CENTER);
@@ -90,14 +90,14 @@ public class MainWindow<Actor> extends JFrame {
         //Mise en sourdine du bouton Stock
         //StockButton.setEnabled(false);
 
-        //Attachement du panel à la fenêtre
+        //Attachement du panel Ã  la fenÃªtre
         this.setContentPane(panel);
 
-        //Rendre la fenêtre visible
+        //Rendre la fenÃªtre visible
         this.setVisible(true);
 
     }
-    //Méthode permettant le déclenchement de l'action de vérification des identifiants.
+    //MÃ©thode permettant le dÃ©clenchement de l'action de vÃ©rification des identifiants.
     class EnabledButton implements ActionListener{
         public void actionPerformed(ActionEvent aActionEvent){
             String idPerson = jFormattedTextField.getText();
@@ -115,14 +115,14 @@ public class MainWindow<Actor> extends JFrame {
             }
             else{
                 JOptionPane jop2 = new JOptionPane();
-                jop2.showMessageDialog(null, "Désolé, mais vous n'avez pas les accès pour " +
+                jop2.showMessageDialog(null, "DÃ©solÃ©, mais vous n'avez pas les accÃ¨s pour " +
                         "l'inventaire.", "Attention", JOptionPane.WARNING_MESSAGE);
             }
 
             }catch (ArrayIndexOutOfBoundsException | IllegalArgumentException e){
                 JOptionPane jop3 = new JOptionPane();
-                jop3.showMessageDialog(null, "Votre identifiant a été incorrectement entré, " +
-                        "merci de réitérer l'opération correctement", "Erreur", JOptionPane.ERROR_MESSAGE);
+                jop3.showMessageDialog(null, "Votre identifiant a Ã©tÃ© incorrectement entrÃ©, " +
+                        "merci de rÃ©itÃ©rer l'opÃ©ration correctement", "Erreur", JOptionPane.ERROR_MESSAGE);
 
             }
 
@@ -131,7 +131,7 @@ public class MainWindow<Actor> extends JFrame {
     }
 
     public static void main(String[] args) throws ParseException {
-        //Lancement de ma fenêtre d'accueil
+        //Lancement de ma fenÃªtre d'accueil
         MainWindow mainWindow = new MainWindow();
     }
 }
