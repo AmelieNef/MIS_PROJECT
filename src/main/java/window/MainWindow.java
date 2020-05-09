@@ -68,7 +68,7 @@ public class MainWindow extends JFrame {
         //StockButton.setPreferredSize(new Dimension(200,30));
 
         //Création de l'image
-        ImageIcon imageIcon = new ImageIcon(new ImageIcon(MainWindow.class.getClassLoader().getResource("logo.png")).
+        ImageIcon imageIcon = new ImageIcon(new ImageIcon(MainWindow.class.getClassLoader().getResource("logo2.png")).
                 getImage().getScaledInstance(300, 160, Image.SCALE_DEFAULT));
         JLabel logo = new JLabel(imageIcon);
 
