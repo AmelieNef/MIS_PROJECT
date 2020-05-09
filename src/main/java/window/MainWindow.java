@@ -22,7 +22,7 @@ import java.text.ParseException;
  *
  * @author Célisons
  */
-public class MainWindow extends JFrame {
+public class MainWindow<Actor> extends JFrame {
     //Paramètres liés aux objets interactifs se trouvant sur la fenêtre d'accueil
     //Initiation du fond sur lequel on va venir coller les interractions avec l'utilisateur
     private JPanel panel = new JPanel();
@@ -33,6 +33,7 @@ public class MainWindow extends JFrame {
     private IAuthorizationManager authorizationManager;
     private JFormattedTextField jFormattedTextField;
     private int service, personnel;
+    private actors.Actor user;
     IAction showStock = new IAction() {
         @Override
         public void performAction() {
@@ -44,7 +45,6 @@ public class MainWindow extends JFrame {
             return ActionType.ShowStock;
         }
     };
-    private Actor user = null;
 
     /**
      * Creates new form MainWindow
@@ -68,7 +68,7 @@ public class MainWindow extends JFrame {
         //StockButton.setPreferredSize(new Dimension(200,30));
 
         //Création de l'image
-        ImageIcon imageIcon = new ImageIcon(new ImageIcon(MainWindow.class.getClassLoader().getResource("logo.jpg")).
+        ImageIcon imageIcon = new ImageIcon(new ImageIcon(MainWindow.class.getClassLoader().getResource("logo.png")).
                 getImage().getScaledInstance(300, 160, Image.SCALE_DEFAULT));
         JLabel logo = new JLabel(imageIcon);
 
@@ -108,7 +108,7 @@ public class MainWindow extends JFrame {
             service = Integer.parseInt(idPersonSplit[2]);
             int profession = Integer.parseInt(idPersonSplit[3]);
             personnel = Integer.parseInt(idPersonSplit[4]);
-            user = new Actor( ActorType.from(profession), service , personnel);
+            user = new actors.Actor( ActorType.from(profession), service , personnel);
             authorizationManager = new AuthorizationManager(user);
             if (authorizationManager.isAuthorized(showStock)){
                 showStock.performAction();
