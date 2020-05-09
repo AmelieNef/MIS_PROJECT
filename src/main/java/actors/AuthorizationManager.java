@@ -3,18 +3,30 @@ package actors;
 import actors.authorization.action.IAction;
 import actors.authorization.action.ReadAction;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class AuthorizationManager implements IAuthorizationManager {
 
-    private Set<ActorType> lowSelectif = Set.of(ActorType.AssistantLogistician, ActorType.AssistantPharmacist,
-            ActorType.HeadPharmacist, ActorType.Logistician, ActorType.Midwife, ActorType.Nurse);
-    private Set<ActorType> highSelectif = Set.of(ActorType.AssistantLogistician, ActorType.AssistantPharmacist,
-            ActorType.HeadPharmacist, ActorType.Logistician);
+
     private Actor user;
+    private Set lowSelectif = new HashSet();
+    private Set highSelectif = new HashSet();
 
     public AuthorizationManager(Actor user) {
+
         this.user = user;
+        lowSelectif.add(ActorType.AssistantLogistician);
+        lowSelectif.add(ActorType.AssistantPharmacist);
+        lowSelectif.add(ActorType.HeadPharmacist);
+        lowSelectif.add(ActorType.Logistician);
+        lowSelectif.add(ActorType.Midwife);
+        lowSelectif.add(ActorType.Nurse);
+
+        highSelectif.add(ActorType.AssistantLogistician);
+        highSelectif.add(ActorType.AssistantPharmacist);
+        highSelectif.add(ActorType.HeadPharmacist);
+        highSelectif.add(ActorType.Logistician);
     }
 
     @Override
