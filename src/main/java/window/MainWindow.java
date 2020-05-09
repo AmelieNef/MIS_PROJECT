@@ -105,7 +105,6 @@ public class MainWindow extends JFrame {
             try{
             int medOrNotMed = Integer.parseInt(idPersonSplit[0]);
             int buyerOrUser = Integer.parseInt(idPersonSplit[1]);
-            System.out.println(buyerOrUser);
             service = Integer.parseInt(idPersonSplit[2]);
             int profession = Integer.parseInt(idPersonSplit[3]);
             personnel = Integer.parseInt(idPersonSplit[4]);
