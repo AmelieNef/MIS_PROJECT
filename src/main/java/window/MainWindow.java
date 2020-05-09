@@ -44,7 +44,7 @@ public class MainWindow extends JFrame {
             return ActionType.ShowStock;
         }
     };
-    private Actor user = null;
+    private actors.Actor user;
 
     /**
      * Creates new form MainWindow
@@ -108,7 +108,7 @@ public class MainWindow extends JFrame {
             service = Integer.parseInt(idPersonSplit[2]);
             int profession = Integer.parseInt(idPersonSplit[3]);
             personnel = Integer.parseInt(idPersonSplit[4]);
-            user = new Actor( ActorType.from(profession), service , personnel);
+            user = new actors.Actor( ActorType.from(profession), service , personnel);
             authorizationManager = new AuthorizationManager(user);
             if (authorizationManager.isAuthorized(showStock)){
                 showStock.performAction();
