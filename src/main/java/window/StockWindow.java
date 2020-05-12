@@ -13,9 +13,9 @@ import actors.authorization.action.ReadAction;
 
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.text.MaskFormatter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 /**
  *
  * @author C�lisons
@@ -25,32 +25,33 @@ public class StockWindow extends JFrame {
     private JButton stockGlobal = new JButton("Global Stock");
     private JButton orderProduct = new JButton("Order product");
     private JButton answerOrder = new JButton("Accept/Decline order");
-    private JPanel jPanel = new JPanel();
-    private JPanel jPanel2 = new JPanel();
+    private JPanel jPanelNorth = new JPanel();
+    private JPanel jPanelCenter = new JPanel();
     private IAuthorizationManager aAuthorizationManager;
     private IAction readAction;
     private String items[] = {};
     private JList itemsList = new JList<String>(items);
     private JScrollPane jScrollPane = new JScrollPane(itemsList);
+    private int profession;
     /**
      * Creates new form StockWindow
      */
-    public StockWindow(IAuthorizationManager aAuthorizationManager, int service) {
+    public StockWindow(IAuthorizationManager aAuthorizationManager, int service, int IDprofession) {
         this.aAuthorizationManager = aAuthorizationManager;
         this.setTitle("Stock Window");
         this.setSize(410,410);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        
+        this.profession = IDprofession;
         jScrollPane.setPreferredSize(new Dimension(400,200));
-
+        
         readAction = new ReadAction<>(true, service);
 
         stockLocal.addActionListener(new EnabledButton());
         stockLocal.setEnabled(true);
         orderProduct.setEnabled(true);
-        jPanel.add(stockLocal, BorderLayout.NORTH);
+        jPanelNorth.add(stockLocal, BorderLayout.NORTH);
 
         //V�rifie directement si la personne a le droit � ses actions - si oui, au lancement de la fen�tre
         // elle met les boutons.
@@ -58,19 +59,20 @@ public class StockWindow extends JFrame {
             stockGlobal.addActionListener(new EnabledButton());
             stockGlobal.setEnabled(true);
             answerOrder.setEnabled(true);
-            jPanel.add(stockGlobal, BorderLayout.NORTH);
-            jPanel.add(answerOrder,BorderLayout.NORTH);
+            jPanelNorth.add(stockGlobal, BorderLayout.NORTH);
+            jPanelNorth.add(answerOrder,BorderLayout.NORTH);
             
             this.setSize(820,820);
         }
         
-        jPanel2.add(jScrollPane, BorderLayout.CENTER);
+        jPanelCenter.add(jScrollPane, BorderLayout.CENTER);
 
-        jPanel.add(orderProduct, BorderLayout.NORTH);
-        this.getContentPane().add(jPanel, BorderLayout.NORTH);
-        this.getContentPane().add(jPanel2, BorderLayout.CENTER);
+        jPanelNorth.add(orderProduct, BorderLayout.NORTH);
+        this.getContentPane().add(jPanelNorth, BorderLayout.NORTH);
+        this.getContentPane().add(jPanelCenter, BorderLayout.CENTER);
         this.setVisible(true);
     }
+    
     
    
     public void JscrollPaneDbLocalTable(){
@@ -78,18 +80,29 @@ public class StockWindow extends JFrame {
         System.out.println("affichage de la base de donn�e locale");
     }
 
-    public void JscrollPaneDbGlobalTable(){
-        //Put code to obtain JScrollPane with a Jtable
+    public void JscrollPaneDbGlobalTable(int profession){
+        //Put code to obtain JScrollPane with a Jtable 
+        
+        System.out.println(profession);
+        
+        
+        
         System.out.println("affichage de la base de donn�e globale");
     }
     
     class EnabledButton implements ActionListener{
         public void actionPerformed(ActionEvent aActionEvent){
             if (aActionEvent.getSource() == stockGlobal){
-                JscrollPaneDbGlobalTable();
-            }if (aActionEvent.getSource() == stockLocal){
+                
+                JscrollPaneDbGlobalTable(profession);
+            }
+            
+            if (aActionEvent.getSource() == stockLocal){
                 JscrollPaneDbLocalTable();
             }
         }
     }
+    
+    
+
 }

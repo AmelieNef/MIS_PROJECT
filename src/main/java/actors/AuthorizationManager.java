@@ -12,7 +12,7 @@ public class AuthorizationManager implements IAuthorizationManager {
     private Actor user;
     private Set lowSelectif = new HashSet();
     private Set highSelectif = new HashSet();
-
+    
     public AuthorizationManager(Actor user) {
 
         this.user = user;
@@ -27,6 +27,7 @@ public class AuthorizationManager implements IAuthorizationManager {
         highSelectif.add(ActorType.AssistantPharmacist);
         highSelectif.add(ActorType.HeadPharmacist);
         highSelectif.add(ActorType.Logistician);
+        
     }
 
     @Override

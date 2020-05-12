@@ -32,11 +32,11 @@ public class MainWindow extends JFrame {
     private JLabel labelId = new JLabel("Entrer votre ID :");
     private IAuthorizationManager authorizationManager;
     private JFormattedTextField jFormattedTextField;
-    private int service, personnel;
+    private int service, personnel,profession;
     IAction showStock = new IAction() {
         @Override
         public void performAction() {
-            new StockWindow(authorizationManager, service); // etc.
+            new StockWindow(authorizationManager, service, profession); // etc.
         }
 
         @Override
@@ -106,7 +106,7 @@ public class MainWindow extends JFrame {
             int medOrNotMed = Integer.parseInt(idPersonSplit[0]);
             int buyerOrUser = Integer.parseInt(idPersonSplit[1]);
             service = Integer.parseInt(idPersonSplit[2]);
-            int profession = Integer.parseInt(idPersonSplit[3]);
+            profession = Integer.parseInt(idPersonSplit[3]);
             personnel = Integer.parseInt(idPersonSplit[4]);
             user = new actors.Actor( ActorType.from(profession), service , personnel);
             authorizationManager = new AuthorizationManager(user);
