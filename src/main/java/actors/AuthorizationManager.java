@@ -52,7 +52,7 @@ public class AuthorizationManager implements IAuthorizationManager {
         if(readAction.isGlobal() && highSelectif.contains(aActor.getActorType())) {
             return true;
         }
-        //Vérifier que la personne à le droit à voire tels et tels db locale
+        //Vï¿½rifier que la personne ï¿½ le droit ï¿½ voir tels et tels db locale
         //if(readAction.getServiceId() == aActor.getServiceId()) {
             //return true;
         //}

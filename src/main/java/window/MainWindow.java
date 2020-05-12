@@ -59,7 +59,7 @@ public class MainWindow extends JFrame {
         //Paramètres liés aux objets interactifs se trouvant sur la fenêtre d'accueil
 
 
-        //Ajouts de la fonctionnalité lié à l'action des boutons
+        //Ajouts de la fonctionnalité liée à l'action des boutons
         ConnectButton.addActionListener(new EnabledButton());
         //StockButton.addActionListener(new LaunchStockWindow());
 
