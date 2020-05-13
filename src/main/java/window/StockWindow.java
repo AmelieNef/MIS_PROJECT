@@ -29,10 +29,12 @@ public class StockWindow extends JFrame {
     private JPanel jPanelCenter = new JPanel();
     private IAuthorizationManager aAuthorizationManager;
     private IAction readAction;
+    private IAction CreateOrder;
     private String items[] = {};
     private JList itemsList = new JList<String>(items);
     private JScrollPane jScrollPane = new JScrollPane(itemsList);
     private int profession;
+    private int service;
     /**
      * Creates new form StockWindow
      */
@@ -44,11 +46,13 @@ public class StockWindow extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.profession = IDprofession;
+        this.service = service;
         jScrollPane.setPreferredSize(new Dimension(400,200));
         
         readAction = new ReadAction<>(true, service);
 
         stockLocal.addActionListener(new EnabledButton());
+        orderProduct.addActionListener(new EnabledButton());
         stockLocal.setEnabled(true);
         orderProduct.setEnabled(true);
         jPanelNorth.add(stockLocal, BorderLayout.NORTH);
@@ -84,9 +88,12 @@ public class StockWindow extends JFrame {
         //Put code to obtain JScrollPane with a Jtable 
         
         System.out.println(profession);
-        
-        
-        
+        if (profession == 5 | profession == 6){
+            System.out.println("Access to steril stock");
+        }
+        else if (profession == 7 | profession == 8){
+            System.out.println("Access to unsetril stock");
+        }
         System.out.println("affichage de la base de donn�e globale");
     }
     
@@ -99,6 +106,11 @@ public class StockWindow extends JFrame {
             
             if (aActionEvent.getSource() == stockLocal){
                 JscrollPaneDbLocalTable();
+            }
+            
+            if (aActionEvent.getSource() == orderProduct){
+                new NewOrder(service);
+                
             }
         }
     }

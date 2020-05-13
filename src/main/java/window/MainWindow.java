@@ -32,7 +32,7 @@ public class MainWindow extends JFrame {
     private JLabel labelId = new JLabel("Entrer votre ID :");
     private IAuthorizationManager authorizationManager;
     private JFormattedTextField jFormattedTextField;
-    private int service, personnel,profession;
+    private int service, personnel, profession;
     IAction showStock = new IAction() {
         @Override
         public void performAction() {

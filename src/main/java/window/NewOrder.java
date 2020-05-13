@@ -5,17 +5,51 @@
  */
 package window;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
- * @author Célisons
+ * @author Cï¿½lisons
  */
-public class NewOrder extends javax.swing.JFrame {
+public class NewOrder extends JFrame {
+    
+     private JButton sendOrderButton = new JButton("Send Order");
+     private JPanel jPanelNorth = new JPanel();
+     private int service;
+     private JTextField noteTextField = new JTextField();
 
     /**
      * Creates new form NewOrder
+     * @param service
      */
-    public NewOrder() {
+    public NewOrder(int service) {
         initComponents();
+        this.service = service;
+        this.setTitle("New Order");
+        this.setSize(410,410);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        
+        sendOrderButton.addActionListener(new NewOrder.EnabledButton());
+        sendOrderButton.setEnabled(true);
+        noteTextField.setPreferredSize(new Dimension(20,50));
+        
+        jPanelNorth.add(sendOrderButton, BorderLayout.NORTH);
+        //jPanelNorth.add(noteTextField, BorderLayout.CENTER);
+        this.getContentPane().add(jPanelNorth, BorderLayout.NORTH);
+        this.setVisible(true);
     }
 
     /**
@@ -42,6 +76,15 @@ public class NewOrder extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    class EnabledButton implements ActionListener {
+
+        public void actionPerformed(ActionEvent aActionEvent){
+            if (aActionEvent.getSource() == sendOrderButton){
+                
+            }
+    }
+    }
 
     /**
      * @param args the command line arguments
