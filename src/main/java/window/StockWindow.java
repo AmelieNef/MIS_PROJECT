@@ -43,7 +43,7 @@ public class StockWindow extends JFrame {
         this.setTitle("Stock Window");
         this.setSize(410,410);
         this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setVisible(true);
         this.profession = IDprofession;
         this.service = service;
