@@ -28,9 +28,13 @@ public class NewOrder extends JFrame {
      private JPanel jPanelCenter = new JPanel();
      private JPanel jPanelSouth = new JPanel();
      private int service;
+     private String[] productString = { "Je", "Remplirai", "Avec", "Les", "Produits", "De", "La", "Database" };
      private String[] quantityString = { "100", "200", "300", "400", "500" };
+     private JComboBox productList = new JComboBox(productString);
      private JComboBox quantityList = new JComboBox(quantityString);
      private JTextField noteTextField = new JTextField();
+     private JLabel chooseProductLabel = new JLabel("Choose the product for this order : ");
+     private JLabel chooseQuantityLabel = new JLabel("Choose the quantity for this order : ");
      private JLabel addNoteJLabel = new JLabel("Add a note : ");
 
     /**
@@ -46,7 +50,7 @@ public class NewOrder extends JFrame {
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        quantityList.setSelectedIndex(4);
+        
         //petList.addActionListener();
         
         
@@ -54,9 +58,12 @@ public class NewOrder extends JFrame {
         sendOrderButton.setEnabled(true);
         noteTextField.setPreferredSize(new Dimension(200,20));
         
-        jPanelNorth.add(quantityList, BorderLayout.NORTH);
-        jPanelCenter.add(addNoteJLabel, BorderLayout.CENTER);
-        jPanelCenter.add(noteTextField, BorderLayout.CENTER);
+        jPanelNorth.add(chooseProductLabel,BorderLayout.NORTH);
+        jPanelNorth.add(productList,BorderLayout.NORTH);
+        jPanelCenter.add(chooseQuantityLabel,BorderLayout.CENTER);
+        jPanelCenter.add(quantityList, BorderLayout.CENTER);
+        jPanelSouth.add(addNoteJLabel, BorderLayout.CENTER);
+        jPanelSouth.add(noteTextField, BorderLayout.CENTER);
         jPanelSouth.add(sendOrderButton, BorderLayout.SOUTH);
         this.getContentPane().add(jPanelNorth, BorderLayout.NORTH);
         this.getContentPane().add(jPanelCenter, BorderLayout.CENTER);
