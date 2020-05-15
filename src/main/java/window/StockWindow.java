@@ -110,7 +110,6 @@ public class StockWindow extends JFrame {
             
             if (aActionEvent.getSource() == orderProduct){
                 new NewOrder(service);
-                
             }
         }
     }

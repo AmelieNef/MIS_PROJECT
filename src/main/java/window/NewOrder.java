@@ -29,13 +29,6 @@ public class NewOrder extends JFrame {
      //private JPanel jPanelSouth = new JPanel();
      
      JPanel cell1 = new JPanel();
-     JPanel cell2 = new JPanel();
-     JPanel cell3 = new JPanel();
-     JPanel cell4 = new JPanel();
-     JPanel cell5 = new JPanel();
-     JPanel cell6 = new JPanel();
-     JPanel cell7 = new JPanel();
-     JPanel cell8 = new JPanel();
      
      private JButton sendOrderButton = new JButton("Send Orders");
      private JButton addOrderButton = new JButton("Add Order");
@@ -48,8 +41,8 @@ public class NewOrder extends JFrame {
      private JLabel fillOrderLabel = new JLabel("Please fill your order : ");
      private JLabel chooseProductLabel = new JLabel("Choose the product for this order : ");
      private JLabel chooseQuantityLabel = new JLabel("Choose the quantity for this order : ");
-     private JLabel addNoteJLabel = new JLabel("Add a note : ");
-     private String orders[] = {"Pourquoi","suis","je","tout","plat","?"};
+     private JLabel addNoteLabel = new JLabel("Add a note : ");
+     private String orders[] = {};
      private JList ordersList = new JList<String>(orders);
      private JScrollPane jScrollPane = new JScrollPane(ordersList);
 
@@ -61,86 +54,101 @@ public class NewOrder extends JFrame {
         
         this.service = service;
         this.setTitle("New Order");
-        this.setSize(410,410);
+        this.setSize(410,500);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
-        jScrollPane.setPreferredSize(new Dimension(70,80));
-        cell1.setBackground(Color.YELLOW);
-        cell1.setPreferredSize(new Dimension(70,40));
-        cell2.setBackground(Color.red);
-        cell2.setPreferredSize(new Dimension(70,40));
-        cell3.setBackground(Color.green);
-        cell3.setPreferredSize(new Dimension(70,40));
-        cell4.setBackground(Color.black);
-        cell4.setPreferredSize(new Dimension(70,40));
-        cell5.setBackground(Color.cyan);
-        cell5.setPreferredSize(new Dimension(70,40));
-        cell6.setBackground(Color.BLUE);
-        cell6.setPreferredSize(new Dimension(70,40));
-        cell7.setBackground(Color.orange);
-        cell7.setPreferredSize(new Dimension(70,40));
-        cell8.setBackground(Color.DARK_GRAY);
-        cell8.setPreferredSize(new Dimension(70,40));
+        fillOrderLabel.setPreferredSize(new Dimension(180,45));
+        chooseProductLabel.setPreferredSize(new Dimension(270,30));
+        productList.setPreferredSize(new Dimension(90,30));
+        chooseQuantityLabel.setPreferredSize(new Dimension (270,30));
+        quantityTextField.setPreferredSize(new Dimension (90,30));
+        addOrderButton.setPreferredSize(new Dimension(360,30));
+        jScrollPane.setPreferredSize(new Dimension(360,100));
+        addNoteLabel.setPreferredSize(new Dimension(90,30));
+        noteTextField.setPreferredSize(new Dimension(270,30));
+        sendOrderButton.setPreferredSize(new Dimension(180,30));
+        
+        cell1.setPreferredSize(new Dimension(90,45));
         
         JPanel content = new JPanel();
-        content.setPreferredSize(new Dimension(410, 400));
+        content.setPreferredSize(new Dimension(420, 400));
         
         content.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         
-        
+        //On positionne la case de départ du composant
+        //--------------------------------------------- Ligne 0 colonne 0
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        content.add(cell1,gbc);
+        //--------------------------------------------- Ligne 0 colonne 1
+        
+        gbc.gridx = 1;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 2;
         content.add(fillOrderLabel,gbc);
-        //--------------------------------
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.gridwidth = 1;
-        gbc.gridheight = 1;
-        gbc.fill = GridBagConstraints.VERTICAL;
-        content.add(chooseProductLabel,gbc);
-        //--------------------------------
-        gbc.gridx = 1;
-        content.add(productList,gbc);
-        //--------------------------------
-        gbc.gridx = 2;
-        gbc.gridheight = 1;
-        
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        content.add(cell6,gbc);
-        //--------------------------------
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.gridwidth = 1;
-        content.add(chooseQuantityLabel,gbc);
-        //--------------------------------
-        gbc.gridx = 1;
-        gbc.gridy = 2;
-        content.add(quantityTextField,gbc);
-        //--------------------------------
-        gbc.gridx = 2;
-        gbc.gridy = 2;
-        gbc.gridwidth = 1;
-        content.add(cell7,gbc);
-        //--------------------------------
+        //--------------------------------------------- Ligne 0 colonne 3
         gbc.gridx = 3;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
-        content.add(cell8,gbc);
-        //--------------------------------
+        content.add(cell1,gbc);
+        //--------------------------------------------- Ligne 1 colonne 0
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 3;
+        content.add(chooseProductLabel,gbc);
+        //--------------------------------------------- Ligne 1 colonne 2
+        gbc.gridx = 3;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        content.add(productList,gbc);
+        //--------------------------------------------- Ligne 2 colonne 0
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 3;
+        content.add(chooseQuantityLabel,gbc);
+        //--------------------------------------------- Ligne 2 colonne 3
+        //Cette instruction informe le layout que c'est une fin de ligne
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.gridx = 3;	
+        content.add(quantityTextField, gbc);
+        //--------------------------------------------- Lignes 3 colonne 0
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.gridheight = 1;
+        content.add(addOrderButton, gbc);
+        //--------------------------------------------- Ligne 4 colonne 0
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
-        content.add(addOrderButton,gbc);
-        //--------------------------------
+        content.add(jScrollPane,gbc);
+        //--------------------------------------------- Ligne 5 colonne 0
         gbc.gridx = 0;
         gbc.gridy = 5;
-        gbc.fill = GridBagConstraints.BOTH;
-        //gbc.gridheight = GridBagConstraints.REMAINDER;
-        //gbc.gridwidth = GridBagConstraints.REMAINDER;
-        content.add(jScrollPane,gbc);
+        gbc.gridwidth = 1;
+        content.add(addNoteLabel,gbc);
+        //--------------------------------------------- Ligne 5 colonne 1
+        gbc.gridx = 1;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        content.add(noteTextField,gbc);
+        //--------------------------------------------- Ligne 6 colonne 0
+        gbc.gridx = 0;
+        gbc.gridy = 6;
+        gbc.gridwidth = 1;
+        content.add(cell1,gbc);
+        //--------------------------------------------- Ligne 6 colonne 1
+        gbc.gridx = 1;
+        gbc.gridwidth = 2;
+        content.add(sendOrderButton,gbc);
+        //--------------------------------------------- Ligne 6 colonne 3
+        gbc.gridx = 3;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        content.add(cell1,gbc);
+        //On ajoute le conteneur
 
         
         this.setContentPane(content);
@@ -148,22 +156,14 @@ public class NewOrder extends JFrame {
         
         //petList.addActionListener();
         
-        
+        addOrderButton.addActionListener(new NewOrder.EnabledButton());
+        addOrderButton.setEnabled(true);
         sendOrderButton.addActionListener(new NewOrder.EnabledButton());
         sendOrderButton.setEnabled(true);
         noteTextField.setPreferredSize(new Dimension(200,20));
         quantityTextField.setPreferredSize(new Dimension(70,20));
         
-        //jPanelNorth.add(chooseProductLabel,BorderLayout.NORTH);
-        //jPanelNorth.add(productList,BorderLayout.NORTH);
-        //jPanelCenter.add(chooseQuantityLabel,BorderLayout.CENTER);
-        //jPanelCenter.add(quantityTextField, BorderLayout.CENTER);
-        //jPanelSouth.add(addNoteJLabel, BorderLayout.CENTER);
-        //jPanelSouth.add(noteTextField, BorderLayout.CENTER);
-        //jPanelSouth.add(sendOrderButton, BorderLayout.SOUTH);
-        //this.getContentPane().add(jPanelNorth, BorderLayout.NORTH);
-        //this.getContentPane().add(jPanelCenter, BorderLayout.CENTER);
-        //this.getContentPane().add(jPanelSouth, BorderLayout.SOUTH);
+        
         this.setVisible(true);
     }
 
@@ -196,6 +196,8 @@ public class NewOrder extends JFrame {
 
         public void actionPerformed(ActionEvent aActionEvent){
             if (aActionEvent.getSource() == sendOrderButton){
+                JOptionPane jop1 = new JOptionPane();
+                jop1.showMessageDialog(null, "Merci, votre commande a bien été envoyée et sera bientôt traitée.", "Commande confirmée", JOptionPane.INFORMATION_MESSAGE);
                 
             }
     }
