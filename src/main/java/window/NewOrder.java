@@ -23,25 +23,21 @@ import java.awt.event.ActionListener;
  */
 public class NewOrder extends JFrame {
     
-     
-     //private JPanel jPanelNorth = new JPanel();
-     //private JPanel jPanelCenter = new JPanel();
-     //private JPanel jPanelSouth = new JPanel();
-     
+    
      JPanel cell1 = new JPanel();
      
-     private JButton sendOrderButton = new JButton("Send Orders");
-     private JButton addOrderButton = new JButton("Add Order");
+     private JButton sendOrderButton = new JButton("Envoyer commande");
+     private JButton addOrderButton = new JButton("Ajouter commande");
      private int service;
      private String[] productString = { "Je", "Remplirai", "Avec", "Les", "Produits", "De", "La", "Database" };
      private String[] quantityString = { "100", "200", "300", "400", "500" };
      private JComboBox productList = new JComboBox(productString);
      private JTextField quantityTextField = new JTextField();
      private JTextField noteTextField = new JTextField();
-     private JLabel fillOrderLabel = new JLabel("Please fill your order : ");
-     private JLabel chooseProductLabel = new JLabel("Choose the product for this order : ");
-     private JLabel chooseQuantityLabel = new JLabel("Choose the quantity for this order : ");
-     private JLabel addNoteLabel = new JLabel("Add a note : ");
+     private JLabel fillOrderLabel = new JLabel("Veuillez complèter la commande : ");
+     private JLabel chooseProductLabel = new JLabel("Choisissez un produit : ");
+     private JLabel chooseQuantityLabel = new JLabel("Précisez une quantité : ");
+     private JLabel addNoteLabel = new JLabel("Ajoutez un commentaire : ");
      private String orders[] = {};
      private JList ordersList = new JList<String>(orders);
      private JScrollPane jScrollPane = new JScrollPane(ordersList);
@@ -53,27 +49,28 @@ public class NewOrder extends JFrame {
     public NewOrder(int service) {
         
         this.service = service;
-        this.setTitle("New Order");
+        this.setTitle("Nouvelle commande");
         this.setSize(410,500);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
-        fillOrderLabel.setPreferredSize(new Dimension(180,45));
+        fillOrderLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        fillOrderLabel.setPreferredSize(new Dimension(360,45));
         chooseProductLabel.setPreferredSize(new Dimension(270,30));
         productList.setPreferredSize(new Dimension(90,30));
         chooseQuantityLabel.setPreferredSize(new Dimension (270,30));
         quantityTextField.setPreferredSize(new Dimension (90,30));
         addOrderButton.setPreferredSize(new Dimension(360,30));
         jScrollPane.setPreferredSize(new Dimension(360,100));
-        addNoteLabel.setPreferredSize(new Dimension(90,30));
-        noteTextField.setPreferredSize(new Dimension(270,30));
+        addNoteLabel.setPreferredSize(new Dimension(360,30));
+        noteTextField.setPreferredSize(new Dimension(360,30));
         sendOrderButton.setPreferredSize(new Dimension(180,30));
         
         cell1.setPreferredSize(new Dimension(90,45));
         
         JPanel content = new JPanel();
-        content.setPreferredSize(new Dimension(420, 400));
+        content.setPreferredSize(new Dimension(420, 360));
         
         content.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -82,19 +79,9 @@ public class NewOrder extends JFrame {
         //--------------------------------------------- Ligne 0 colonne 0
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.gridwidth = 1;
         gbc.gridheight = 1;
-        content.add(cell1,gbc);
-        //--------------------------------------------- Ligne 0 colonne 1
-        
-        gbc.gridx = 1;
-        gbc.gridheight = 1;
-        gbc.gridwidth = 2;
-        content.add(fillOrderLabel,gbc);
-        //--------------------------------------------- Ligne 0 colonne 3
-        gbc.gridx = 3;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
-        content.add(cell1,gbc);
+        content.add(fillOrderLabel,gbc);
         //--------------------------------------------- Ligne 1 colonne 0
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -129,22 +116,22 @@ public class NewOrder extends JFrame {
         //--------------------------------------------- Ligne 5 colonne 0
         gbc.gridx = 0;
         gbc.gridy = 5;
-        gbc.gridwidth = 1;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
         content.add(addNoteLabel,gbc);
-        //--------------------------------------------- Ligne 5 colonne 1
-        gbc.gridx = 1;
+        //--------------------------------------------- Ligne 6 colonne 0
+        gbc.gridy = 6;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         content.add(noteTextField,gbc);
-        //--------------------------------------------- Ligne 6 colonne 0
+        //--------------------------------------------- Ligne 7 colonne 0
         gbc.gridx = 0;
-        gbc.gridy = 6;
+        gbc.gridy = 7;
         gbc.gridwidth = 1;
         content.add(cell1,gbc);
-        //--------------------------------------------- Ligne 6 colonne 1
+        //--------------------------------------------- Ligne 7 colonne 1
         gbc.gridx = 1;
         gbc.gridwidth = 2;
         content.add(sendOrderButton,gbc);
-        //--------------------------------------------- Ligne 6 colonne 3
+        //--------------------------------------------- Ligne 7 colonne 3
         gbc.gridx = 3;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         content.add(cell1,gbc);
@@ -160,8 +147,6 @@ public class NewOrder extends JFrame {
         addOrderButton.setEnabled(true);
         sendOrderButton.addActionListener(new NewOrder.EnabledButton());
         sendOrderButton.setEnabled(true);
-        noteTextField.setPreferredSize(new Dimension(200,20));
-        quantityTextField.setPreferredSize(new Dimension(70,20));
         
         
         this.setVisible(true);
@@ -197,7 +182,7 @@ public class NewOrder extends JFrame {
         public void actionPerformed(ActionEvent aActionEvent){
             if (aActionEvent.getSource() == sendOrderButton){
                 JOptionPane jop1 = new JOptionPane();
-                jop1.showMessageDialog(null, "Merci, votre commande a bien été envoyée et sera bientôt traitée.", "Commande confirmée", JOptionPane.INFORMATION_MESSAGE);
+                jop1.showMessageDialog(null, "Merci, votre commande a bien été envoyée et sera bientôt traitée.", "Commande envoyée", JOptionPane.INFORMATION_MESSAGE);
                 
             }
     }

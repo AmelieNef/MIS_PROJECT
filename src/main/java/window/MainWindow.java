@@ -27,7 +27,7 @@ public class MainWindow extends JFrame {
     //Initiation du fond sur lequel on va venir coller les interractions avec l'utilisateur
     private JPanel panel = new JPanel();
     //Initiation des interracteurs avec l'utilisateur
-    private JButton ConnectButton = new JButton("Connection");
+    private JButton ConnectButton = new JButton("Connexion");
     //private JButton StockButton = new JButton("Go to stock");
     private JLabel labelId = new JLabel("Entrer votre ID :");
     private IAuthorizationManager authorizationManager;

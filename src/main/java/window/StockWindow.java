@@ -21,10 +21,10 @@ import java.awt.event.ActionListener;
  * @author C�lisons
  */
 public class StockWindow extends JFrame {
-    private JButton stockLocal = new JButton("Local Stock");
-    private JButton stockGlobal = new JButton("Global Stock");
-    private JButton orderProduct = new JButton("Order product");
-    private JButton answerOrder = new JButton("Accept/Decline order");
+    private JButton stockLocal = new JButton("Stock local");
+    private JButton stockGlobal = new JButton("Stock global");
+    private JButton orderProduct = new JButton("Commander un produit");
+    private JButton answerOrder = new JButton("Accepter/Decliner une commande");
     private JPanel jPanelNorth = new JPanel();
     private JPanel jPanelCenter = new JPanel();
     private IAuthorizationManager aAuthorizationManager;
@@ -40,7 +40,7 @@ public class StockWindow extends JFrame {
      */
     public StockWindow(IAuthorizationManager aAuthorizationManager, int service, int IDprofession) {
         this.aAuthorizationManager = aAuthorizationManager;
-        this.setTitle("Stock Window");
+        this.setTitle("Fenêtre Stock");
         this.setSize(410,410);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -61,6 +61,7 @@ public class StockWindow extends JFrame {
         // elle met les boutons.
         if (aAuthorizationManager.isAuthorized(readAction)){
             stockGlobal.addActionListener(new EnabledButton());
+            answerOrder.addActionListener(new EnabledButton());
             stockGlobal.setEnabled(true);
             answerOrder.setEnabled(true);
             jPanelNorth.add(stockGlobal, BorderLayout.NORTH);
@@ -110,6 +111,10 @@ public class StockWindow extends JFrame {
             
             if (aActionEvent.getSource() == orderProduct){
                 new NewOrder(service);
+            }
+            
+            if (aActionEvent.getSource() == answerOrder){
+                new RequestedOrderWindow(profession);
             }
         }
     }
