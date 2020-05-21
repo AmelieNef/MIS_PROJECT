@@ -6,7 +6,7 @@ Repository comportant l'ensemble des codes à exécuter pour l'application de ge
 
 Organisation du projet
 ------------
-
+~~~~
 ├── .gitignore
 ├── .idea                       <- Dossier projet IntelliJ
 │   ├── compiler.xml      
@@ -59,4 +59,4 @@ Organisation du projet
 │   
 │       
 └── stock_management.sql  <- Rattachement de la base de donnée affiliée à l'application
-
+~~~~
