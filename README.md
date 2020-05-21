@@ -29,7 +29,6 @@ Organisation du projet
 │   └── main               <- Dossier comportant l'entièreté des codes exécutables + ressources
 │       ├── java           <- Dossier comportant l'entièreté des codes exécutables
 │       │   ├── actors     <- Package comportant les scripts permettant les autorisations, les actions autorisables, les différents acteurs de l'hôpital ainsi que le rangement de ces acteurs dans des catégories ayant différents accès propre
-
 │       │   │   ├── Actor.java                     <- Code permettant de crée l'objet "acteur" de l'hopîtal
 │       │   │   ├── ActorType.java                 <- Code permettant d'attribuer le type d'acteur à l'objet acteur
 │       │   │   ├── authorization                  <- Package comportant les actions autorisables
@@ -41,9 +40,7 @@ Organisation du projet
 │       │   │   │       ├── ReadAction.java  <- Script permettant d'enrichir l'objet acteur d'attribut + ajotu de méthodes liées.
 │       │   │   │       └── Update.java            <- Script décrivant l'action de mise à jour de la database affichée
 │       │   │   ├── AuthorizationManager.java      <- Script créant des listes regroupant les types d'acteurs autorisés ou non ainsi que les méthodes renvoyant si la personne est autorisée ou non a effectuer une action ainsi que la méthode permettant la lecture de la base de donnée.
-
 │       │   │   └── IAuthorizationManager.java     <- Interface décrivant la méthode pour renvoyer un booléan annonçant si l'objet est autorisé ou non à effectuer une action.
-
 │       │   └── window                             <- Package regroupant les différentes fenêtres de l'application
 │       │       ├── MainWindow.form      
 │       │       ├── MainWindow.java                <- Fenêtre de bienvenue   
